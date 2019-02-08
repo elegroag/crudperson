@@ -8,6 +8,8 @@
       <title>CRUD Personas</title>
       <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
       <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+      
+      <link href="{{ asset('css/crud.css')}}" rel="stylesheet" type="text/css">
       <link href="{{ asset('js/angular-assets/angular-ui-notification.min.css')}}" rel="stylesheet" type="text/css">
       <script src="{{ asset('js/jquery.js') }}"></script>
       <script src="{{ asset('js/bootstrap.min.js') }}"></script>

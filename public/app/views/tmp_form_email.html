@@ -63,12 +63,14 @@
       <h4>Lista de emails</h4>
     </div>
     <div class="panel-body">
-        &nbsp;
-        <ul class="list-group" ng-repeat='email in emails'>
-          <li class="list-group-item">
-            <p>Persona: {{email.personas_nombres}} {{email.personas_apellidos}}</p>
-          </li>
-        </ul>
+        <table class='table table-bordered table-condenced'>
+          <tbody ng-repeat='email in emails'>
+            <tr>
+              <td>Persona: {{email.personas_nombres}} {{email.personas_apellidos}}</td>
+              <td width='10%'><button class='btn btn-sm btn-danger' type='button' name='borrar' ng-click='borrar(email)'>Borrar</button></td>
+            </tr>
+          </tbody>
+        </table>
     </div>
   </div>
 </div>

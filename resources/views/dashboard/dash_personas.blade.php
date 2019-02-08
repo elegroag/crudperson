@@ -2,7 +2,7 @@
 
 @section('title')
   <div class='container'>
-    <a class='btn btn-sm btn-default' href="{{ URL::route('logout') }}">Salir aquí</a>
+    <a class='btn btn-sm btn-default button-logout' href="{{ URL::route('logout') }}">SALIR</a>
   </div>
     <h2 class="text-center">DASH Personas</h2>
     @if (session('status'))

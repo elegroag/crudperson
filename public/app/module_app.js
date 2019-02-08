@@ -20,13 +20,13 @@ _app.emails = _emails;
     })
     .state({
       name: 'editar',
-      url: '/editar',
+      url: '/editar/:id',
       templateUrl: "/app/views/tmp_editar_persona.html",
       controller: 'EditarPersonas'
     })
     .state({
       name: 'mostrar',
-      url: '/mostrar',
+      url: '/mostrar/:id',
       templateUrl: "/app/views/tmp_mostrar_persona.html",
       controller: 'MostrarPersona'
     })
@@ -44,6 +44,23 @@ _app.emails = _emails;
     _app.persona = {};
     _app.municipio = {};
     _app.email = {};
+    
+    _app.remove_email = function(email){
+      $http({
+        headers: {
+         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        method: 'delete',
+        url: '/rest_emails/' + email.id
+      }).then(function successCallback(response)
+      {
+        var indice = _app.emails.indexOf(email);
+        _app.emails.splice(indice, 1);
+        
+      }, function errorCallback(response){
+        console.log(data.responseText);
+      });
+    };
 
     _app.add_persona = function(persona){
       $http({
@@ -118,7 +135,7 @@ _app.emails = _emails;
     
     $scope.editar = function(persona){
       _app.persona = persona;
-      $state.go('editar');
+      $state.go('editar', {id: persona.id});
     };
     
     $scope.borrar = function(persona){
@@ -128,11 +145,17 @@ _app.emails = _emails;
 
     $scope.mostrar = function(persona){
       _app.persona = persona;
-      $state.go('mostrar');
+      $state.go('mostrar',{id: persona.id});
     };
   })
-  .controller('EditarPersonas', function($scope, $state, _app){
-    $scope.persona = _app.persona;
+  .controller('EditarPersonas', function($stateParams, $scope, $state, _app){
+    if(_.size(_app.persona) == 0){
+      _app.persona = _.findWhere(_app.personas, {id: parseInt($stateParams.id)});  
+      $scope.persona = _app.persona;
+    }else{
+      $scope.persona = _app.persona;
+    }
+    
     $scope.municipios = _app.municipios;
 
     $scope.lista = function(){
@@ -158,8 +181,13 @@ _app.emails = _emails;
       _app.add_persona($scope.persona);      
     };
   })
-  .controller('MostrarPersona', function($scope, $state, _app){
-    $scope.persona = _app.persona;
+  .controller('MostrarPersona', function($stateParams, $scope, $state, _app){
+    if(_.size(_app.persona) == 0){
+      _app.persona = _.findWhere(_app.personas, {id: parseInt($stateParams.id)});  
+      $scope.persona = _app.persona;
+    }else{
+      $scope.persona = _app.persona;
+    }
     
     $scope.lista = function(){
        $state.go('index');
@@ -169,6 +197,11 @@ _app.emails = _emails;
     $scope.email = {};
     $scope.emails = _app.emails;     
     $scope.personas = _app.personas;
+    
+    $scope.borrar = function(email){
+      _app.email = email;
+      _app.remove_email(email);
+    }
     
     $scope.registrar = function(){
       var datos = $scope.email;

@@ -1,0 +1,73 @@
+body{
+    width: auto; 
+    height: auto;
+    background: #87b3fe;
+    background: -moz-linear-gradient(-45deg, #87b3fe 0%, #6033b7  33%, #2989d8 71%, #89b4ff 91%);
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#87b3fe), color-stop(33%,#6033b7 ), color-stop(71%,#2989d8), color-stop(91%,#89b4ff));
+    background: -webkit-linear-gradient(-45deg, #87b3fe 0%,#6033b7  33%,#2989d8 71%,#89b4ff 91%);
+    background: -o-linear-gradient(-45deg, #87b3fe 0%,#6033b7  33%,#2989d8 71%,#89b4ff 91%);
+    background: -ms-linear-gradient(-45deg, #87b3fe 0%,#6033b7  33%,#2989d8 71%,#89b4ff 91%);
+    background: linear-gradient(135deg, #87b3fe 0%,#6033b7  33%,#2989d8 71%,#89b4ff 91%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87b3fe', endColorstr='#89b4ff',GradientType=1 );
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    background-size: 100% 100%;    
+}
+
+.workshop{
+     height: 1000px   
+}
+.title h2{
+    color: #fff;
+    font-family: sans-serif arial;
+    font-weight: 700
+}
+.page-header{
+    border-bottom: 10px dotted #222;
+}
+.button-logout{
+    border-radius: 50%;
+    word-break: break-all;
+    line-height: -60px;
+    padding: 25px 20px;
+    background: #6235B5;
+    color: #fff;
+    border-color: #000;
+}
+
+.panel-default {
+    border-color: #7D5792;
+}
+.panel {
+    margin-bottom: 20px;
+    background-color: #7d5792;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 2px 2px rgba(0,0,0,.05);
+    box-shadow: 0 2px 2px rgb(66, 99, 201);
+}
+
+.panel-default >.panel-heading {
+    color: #fff;
+    background-color: #7D5792;
+    border-color: #7D5792;
+}
+
+.panel-body {
+    padding: 15px;
+    background: #fff;
+    min-height: 500px
+}
+.panel-default >.panel-body.padding-0{
+    padding: 0px
+}
+
+table.table-bordered{
+    border-color: #764F9A;
+}
+
+table.table-bordered > thead > tr > th{
+    border: 1px solid #764F9A;
+    background: #764F9A !important;
+    color: #fff
+}
