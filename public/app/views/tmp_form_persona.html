@@ -1,0 +1,69 @@
+
+<div class="col-lg-3 col-sm-3 hidden-xs">&nbsp;</div>
+<div class="col-lg-7 col-sm-6 col-xs-12">
+	<div class="panel panel-default">
+  <div class="panel-heading">
+    <button type="button" ng-click='lista()' class="btn btn-primary btn-sm pull-right">Lista</button>
+    <h4>Agregar Personas</h4>
+    <div class="hidden" id="show_result">
+      <div class="alert alert-success" role="alert"><p id="show_msj"></p></div>
+    </div>
+  </div>
+  <div class="panel-body">
+  	<form class="form-horizontal" method="post" action="#" id="form_personas">
+  		<div class="form-group">
+        <label for="nombres" class="col-md-4 control-label">Documento</label>
+        <div class="col-md-6">
+         <input id="Documento" type="text" ng-model="persona.documento" value='' class="form-control" name="Documento" placeholder="Documento"  required autofocus> 
+         	<span class="help-block">
+          	<strong data-erro='Documento'></strong>
+         	</span>
+        </div>
+      </div>
+  		<div class="form-group">
+        <label for="nombres" class="col-md-4 control-label">Nombres</label>
+        <div class="col-md-6">
+         <input id="nombres" type="text" ng-model="persona.nombres" value='' class="form-control" name="nombres" placeholder="nombres"  required autofocus> 
+         	<span class="help-block">
+          	<strong data-erro='nombres'></strong>
+         	</span>
+        </div>
+      </div>
+			<div class="form-group">
+        <label for="nombres" class="col-md-4 control-label">Apellidos</label>
+        <div class="col-md-6">
+         <input id="apellidos" type="text" ng-model="persona.apellidos" value='' class="form-control" name="apellidos" placeholder="apellidos"  required autofocus> 
+         	<span class="help-block">
+          	<strong data-erro='apellidos'></strong>
+         	</span>
+        </div>
+      </div>
+			<div class="form-group">
+        <label for="nombres" class="col-md-4 control-label">Email</label>
+        <div class="col-md-6">
+         <input id="Email" type="text" ng-model="persona.email" value='' class="form-control" name="Email" placeholder="Email"  required autofocus> 
+         	<span class="help-block">
+          	<strong data-erro='Email'></strong>
+         	</span>
+        </div>
+      </div>
+			<div class="form-group">
+        <label for="nombres" class="col-md-4 control-label">Municipio</label>
+        <div class="col-md-6">
+          <select class="form-control" name="municipios_id" ng-model="persona.municipios_id" required>
+             <option ng-repeat="municipio in municipios" value="{{municipio.id}}">{{municipio.muni_nombre}}</option>
+          </select>
+         	<span class="help-block">
+          	<strong data-erro='Municipio'></strong>
+         	</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-8 col-md-offset-4">
+        	<button type="button" name="registrar"  ng-click='registrar()' class="btn btn-primary">Registrar</button>
+      	</div>
+      </div>                   
+  	</form>
+  </div>
+</div>
+</div>

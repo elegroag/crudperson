@@ -1,0 +1,43 @@
+<div class="col-lg-1 hidden-xs">&nbsp;</div>
+<div class="col-lg-10 col-xs-12">
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="form-inline pull-right">
+        <div class="form-group">
+        <button type="button" ng-click='agregar()' class="btn btn-primary btn-sm ">Agregar +</button>
+        </div>
+        <div class="form-group">          
+        <button type="button" ng-click='emails()' class="btn btn-primary btn-sm">Email +</button>
+        </div>
+      </div>
+      
+      <h4>Tabla Personas</h4>
+    </div>
+    <div class="panel-body">
+    <table class="table table-bordered table-condenced">
+      <thead>
+        <tr>
+          <th>Nombres</th>
+          <th>Apellidos</th>
+          <th>Documento</th>
+          <th>Email</th>
+          <th>Municipio</th>
+          <th colspan="3" width="10%">Opciones</th>
+        </tr>
+      </thead>
+      <tbody data-row='personas' ng-repeat="persona in personas">
+        <tr>
+          <td>{{ persona.nombres }}</td>
+          <td>{{ persona.apellidos }}</td>
+          <td>{{ persona.documento }}</td>
+          <td>{{ persona.email }}</td>
+          <td>{{ persona.muni_nombre}}</td>
+          <td><button type="button" ng-click='mostrar(persona)' name="borrar" class="btn btn-default btn-sm">Ver</button></td>
+          <td><button type="button" ng-click='editar(persona)' name="editar" class="btn btn-default btn-sm">Editar</button></td>
+          <td><button type="button" ng-click='borrar(persona)' name="borrar" class="btn btn-default btn-sm">Borrar</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>

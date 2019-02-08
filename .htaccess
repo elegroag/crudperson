@@ -1,0 +1,19 @@
+#php_flag display_startup_errors on
+#php_flag display_errors on
+#php_flag html_errors on
+
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
+
+    RewriteEngine On
+    RewriteBase /
+
+    RewriteRule ^(styles|scripts|images|fonts)/(.*)?$ /dist/$1/$2 [L]
+
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_URI} !index
+    RewriteRule ^ index.php [L]
+</IfModule>

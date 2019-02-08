@@ -1,0 +1,63 @@
+<div class="col-lg-3 col-md-3 col-sm-3 hidden-xs">&nbsp;</div>
+<div class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <button type="button" ng-click='lista()' class="btn btn-primary btn-sm pull-right">Lista</button>
+    <h4>Editar Personas</h4>
+  </div>
+  <div class="panel-body">
+  	<form class="form-horizontal" method="post" action="#" id="form_personas">
+  		<div class="form-group">
+        <label for="nombres" class="col-md-4 control-label">Documento</label>
+        <div class="col-md-6">
+         <input id="Documento" type="text" ng-model='persona.documento' class="form-control" name="Documento"  value="{{persona.documento}}" placeholder="Documento"  required autofocus> 
+         	<span class="help-block">
+          	<strong data-erro='Documento'></strong>
+         	</span>
+        </div>
+      </div>
+  		<div class="form-group">
+        <label for="nombres" class="col-md-4 control-label">Nombres</label>
+        <div class="col-md-6">
+         <input id="nombres" type="text" ng-model='persona.nombres' class="form-control" value="{{persona.nombres}}" name="nombres" placeholder="nombres"  required autofocus> 
+         	<span class="help-block">
+          	<strong data-erro='nombres'></strong>
+         	</span>
+        </div>
+      </div>
+			<div class="form-group">
+        <label for="nombres" class="col-md-4 control-label">Apellidos</label>
+        <div class="col-md-6">
+         <input id="apellidos" type="text" ng-model='persona.apellidos' class="form-control" value="{{persona.apellidos}}" name="apellidos" placeholder="apellidos"  required autofocus> 
+         	<span class="help-block">
+          	<strong data-erro='apellidos'></strong>
+         	</span>
+        </div>
+      </div>
+			<div class="form-group">
+        <label for="nombres" class="col-md-4 control-label">Email</label>
+        <div class="col-md-6">
+         <input id="Email" type="text" ng-model='persona.email' class="form-control" value="{{persona.email}}" name="Email" placeholder="Email"  required autofocus> 
+         	<span class="help-block">
+          	<strong data-erro='Email'></strong>
+         	</span>
+        </div>
+      </div>
+			<div class="form-group">
+        <label for="nombres" class="col-md-4 control-label">Municipio</label>
+        <div class="col-md-6">
+         <input id="Municipio" type="text" ng-model='persona.municipios_id' class="form-control" value="{{persona.muni_nombre}}" name="Municipio" placeholder="Municipio"  required autofocus> 
+         	<span class="help-block">
+          	<strong data-erro='Municipio'></strong>
+         	</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-8 col-md-offset-4">
+        	<button type="button" name="actualizar" ng-click='actualizar()' class="btn btn-primary">Registrar</button>
+      	</div>
+      </div>                        
+  	</form>
+  </div>
+</div>
+</div>
