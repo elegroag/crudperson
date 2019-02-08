@@ -1,3 +1,19 @@
+Ingreso C9.io
+==============
+
+
+Run server
+-----------
+php artisan serve --host=$IP --port=8080    
+
+Acceso URL 
+-------------------------
+http://crudperson-maxedwwin.c9users.io:8080/    
+
+
+Laravel@5.5
+==========================
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
