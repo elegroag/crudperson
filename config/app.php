@@ -52,8 +52,8 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://crudperson-maxedwwin.c9users.io'),
-
+    #'url' => env('APP_URL', 'https://crudperson-maxedwwin.c9users.io'),
+    'url' => env('APP_URL', 'http://crudperson.com'),
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
