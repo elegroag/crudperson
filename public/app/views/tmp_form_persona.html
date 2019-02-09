@@ -10,20 +10,22 @@
     </div>
   </div>
   <div class="panel-body">
-  	<form class="form-horizontal" method="post" action="#" id="form_personas">
+  	<form name="personaForm" class="form-horizontal" method="post" action="#" id="form_personas">
   		<div class="form-group">
         <label for="nombres" class="col-md-4 control-label">Documento</label>
         <div class="col-md-6">
-         <input id="Documento" type="text" ng-model="persona.documento" value='' class="form-control" name="Documento" placeholder="Documento"  required autofocus> 
-         	<span class="help-block">
-          	<strong data-erro='Documento'></strong>
+         <input id="Documento" type="numeric" ng-model="persona.documento" ng-required="true" value='' class="form-control" name="documento" placeholder="#" autofocus  ng-pattern="/[0-9]+/" /> 
+         	
+          <span class="help-block" ng-show="personaForm.documento.$invalid" topic="¡Error en validación!">
+          	<p ng-show="personaForm.documento.$error.required">¡El documento es un valor requerido!</p>
+            <p ng-show="personaForm.documento.$error.pattern">¡El documento debe ser valor númerico!</p>
          	</span>
         </div>
       </div>
   		<div class="form-group">
         <label for="nombres" class="col-md-4 control-label">Nombres</label>
         <div class="col-md-6">
-         <input id="nombres" type="text" ng-model="persona.nombres" value='' class="form-control" name="nombres" placeholder="nombres"  required autofocus> 
+         <input id="nombres" type="text" ng-model="persona.nombres" ng-required="true" value='' class="form-control" name="nombres" placeholder="nombres"  required autofocus> 
          	<span class="help-block">
           	<strong data-erro='nombres'></strong>
          	</span>
@@ -32,7 +34,7 @@
 			<div class="form-group">
         <label for="nombres" class="col-md-4 control-label">Apellidos</label>
         <div class="col-md-6">
-         <input id="apellidos" type="text" ng-model="persona.apellidos" value='' class="form-control" name="apellidos" placeholder="apellidos"  required autofocus> 
+         <input id="apellidos" type="text" ng-model="persona.apellidos" ng-required="true" value='' class="form-control" name="apellidos" placeholder="apellidos"  required autofocus> 
          	<span class="help-block">
           	<strong data-erro='apellidos'></strong>
          	</span>
@@ -41,26 +43,28 @@
 			<div class="form-group">
         <label for="nombres" class="col-md-4 control-label">Email</label>
         <div class="col-md-6">
-         <input id="Email" type="text" ng-model="persona.email" value='' class="form-control" name="Email" placeholder="Email"  required autofocus> 
-         	<span class="help-block">
-          	<strong data-erro='Email'></strong>
-         	</span>
+         <input id="Email" type="text" ng-model="persona.email" ng-required="true" value='' class="form-control" name="email" placeholder="@email"  autofocus ng-pattern='express_email' /> 
+         	<span class="help-block" ng-show="personaForm.email.$invalid" topic="¡Error en validación!">
+            <p ng-show="personaForm.email.$error.required">¡El email es un valor requerido!</p>
+            <p ng-show="personaForm.email.$error.pattern">¡El email no es correcto!</p>
+          </span>
         </div>
       </div>
 	 <div class="form-group">
         <label for="nombres" class="col-md-4 control-label">Municipio</label>
         <div class="col-md-6">
-          <select class="form-control" name="municipios_id" ng-model="persona.municipios_id" required>
+          <select class="form-control" name="municipios_id" ng-model="persona.municipios_id" ng-pattern="/[0-9]+/" >
              <option ng-repeat="municipio in municipios" value="{{municipio.id}}">{{municipio.muni_nombre}}</option>
           </select>
-         	<span class="help-block">
-          	<strong data-erro='Municipio'></strong>
-         	</span>
+         	<span class="help-block" ng-show="personaForm.municipios_id.$invalid" topic="¡Error en validación!">
+            <p ng-show="personaForm.municipios_id.$error.required">¡El municipio es un valor requerido!</p>
+            <p ng-show="personaForm.municipios_id.$error.pattern">¡El municipio no es correcto!</p>
+          </span>
         </div>
       </div>
       <div class="form-group">
         <div class="col-md-8 col-md-offset-4">
-        	<button type="button" name="registrar"  ng-click='registrar()' class="btn btn-primary">Registrar</button>
+        	<button type="button" name="registrar"  ng-click='registrar()' ng-disabled="personaForm.$invalid" class="btn btn-primary">Registrar</button>
       	</div>
       </div>                   
   	</form>

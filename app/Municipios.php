@@ -15,7 +15,7 @@ class Municipios extends Model
     #entidad relacion foreign key.
     public function departamentos()
     {
-      return $this->hasMany('crudlara\Departamentos');
+      return $this->hasMany('crudperson\Departamentos');
     }
 
 }

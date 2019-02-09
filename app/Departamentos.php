@@ -13,9 +13,9 @@ class Departamentos extends Model
     ];
     
     #entidad relacion foreign key.
-    public function paises()
+    public function paices()
     {
-      return $this->hasMany('crudlara\Paices');
+      return $this->hasMany('crudperson\Paices');
     }
 
 }

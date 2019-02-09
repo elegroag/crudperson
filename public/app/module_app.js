@@ -1,10 +1,11 @@
 
-var module_app = angular.module('app_crud', ['ui.router']);
+var module_app = angular.module('app_crud', ['ui.router', 'ui-notification']);
 var _app = {};
 _app.personas = _personas;
 _app.emails = _emails;
+var express_email = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-	module_app.config(function($stateProvider, $urlRouterProvider){	
+	module_app.config(function($stateProvider, $urlRouterProvider, NotificationProvider){	
   	$stateProvider
     .state({
     	name: 'index',
@@ -38,8 +39,17 @@ _app.emails = _emails;
     });
 
   	$urlRouterProvider.otherwise('index');
+    NotificationProvider.setOptions({
+            delay: 10000,
+            startTop: 20,
+            startRight: 10,
+            verticalSpacing: 20,
+            horizontalSpacing: 20,
+            positionX: 'left',
+            positionY: 'bottom'
+     });
 	}).
-  factory('_app', function($http){
+  factory('_app', function($http, Notification){
     _app.municipios = _municipios;
     _app.persona = {};
     _app.municipio = {};
@@ -56,9 +66,9 @@ _app.emails = _emails;
       {
         var indice = _app.emails.indexOf(email);
         _app.emails.splice(indice, 1);
-        
+         Notification.success('Registro con éxito');
       }, function errorCallback(response){
-        console.log(data.responseText);
+        Notification.error('Registro no es posible, error de validación');
       });
     };
 
@@ -72,15 +82,18 @@ _app.emails = _emails;
         data: persona,
       }).then(function successCallback(response)
       {
-        _app.persona = response.data.model;
-        _app.municipio = _.findWhere(_app.municipios, {id: parseInt(persona.municipios_id)});
-        _app.persona.muni_nombre = _app.municipio.muni_nombre;
-        _app.personas.push(_app.persona);
-        $("#show_result").removeClass('hidden');
-        $("#show_msj").html("El registro se completo con éxito. OK");
-
+        if (response.data.state == 200)
+        {
+          _app.persona = response.data.model;
+          _app.municipio = _.findWhere(_app.municipios, {id: parseInt(persona.municipios_id)});
+          _app.persona.muni_nombre = _app.municipio.muni_nombre;
+          _app.personas.push(_app.persona);
+          Notification.success('Registro con éxito');
+        }else{         
+          Notification.error('Registro no es posible, error de validación');
+        }
       }, function errorCallback(response){
-        console.log(data.responseText);
+        Notification.error('Error, el registro no es posible</br>'+response.data.message);
       });
     };
 
@@ -99,8 +112,9 @@ _app.emails = _emails;
           
           _app.persona.muni_nombre = _app.municipio.muni_nombre;
           _app.personas[indice] = _app.persona;
+          Notification.success('Registro con éxito');
       }, function errorCallback(response){
-        console.log(data.responseText);
+         Notification.error('Error, el registro no es posible</br>'+response.data.message);
       });
     };
     
@@ -113,9 +127,10 @@ _app.emails = _emails;
         url: '/rest_personas/' + persona.id
       }).then(function successCallback(response){
         var indice = _app.personas.indexOf(persona);
-        _app.personas.splice(indice, 1);      
+        _app.personas.splice(indice, 1);
+         Notification.success('Registro con éxito');   
       }, function errorCallback(response){
-        console.log(data.responseText);
+        console.log(response.responseText);
       });
     };
 
@@ -170,6 +185,7 @@ _app.emails = _emails;
     }
   })
   .controller('AgregarPersonas', function($scope, $state, _app){
+    $scope.express_email = express_email;
     $scope.persona = {};
     $scope.municipios = _app.municipios;
     
@@ -178,7 +194,9 @@ _app.emails = _emails;
     };
 
     $scope.registrar = function(){
-      _app.add_persona($scope.persona);      
+      $scope.persona.municipios_id = parseInt($scope.persona.municipios_id);
+      $scope.persona.documento = parseInt($scope.persona.documento);
+      _app.add_persona($scope.persona);
     };
   })
   .controller('MostrarPersona', function($stateParams, $scope, $state, _app){

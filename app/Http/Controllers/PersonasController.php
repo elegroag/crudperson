@@ -43,13 +43,24 @@ class PersonasController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email|max:255',
-            'documento' => 'numeric|required'
+            'email'         => 'required|email|max:255',
+            'documento'     => 'numeric|required',
+            'municipios_id' => 'required'
+        ],
+        [   
+            'email.email'            => "El campo email no es una direccion correcta",
+            'email.required'         => "El campo email es requerido",
+            'documento.numeric'      => "El campo documento no es un entero",
+            'documento.required'     => "El campo documento es requerido",            
+            'municipios_id.required' => "El campo municipio es requerido"       
         ]);
 
         if($validator->fails()){
-            return response()->json(["responseText" => "Error de valdiación", "type"=> 200]);
-        }else{
+            return response()->json([
+                "state" => 500,
+                "errors" => $validator->errors()->toArray()
+            ]);
+        }else{            
             $persona = new Personas;
             $persona->nombres       = $request->input('nombres');
             $persona->apellidos     = $request->input('apellidos');

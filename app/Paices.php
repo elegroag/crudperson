@@ -16,6 +16,6 @@ class Paices extends Model
   #relacion inversa para consultar todos los pedidos de una mesa.
   public function departamentos()
   {
-  	return $this->belongsTo('crudlara\Departamentos');
+  	return $this->belongsTo('crudperson\Departamentos');
   }
 }

@@ -18,6 +18,6 @@ class Personas extends Model
     #entidad relacion foreign key.
     public function municipios()
     {
-      return $this->hasMany('crudlara\Municipios');
+      return $this->hasMany('crudperson\Municipios');
     }
 }
