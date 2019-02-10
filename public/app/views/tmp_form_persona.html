@@ -14,9 +14,12 @@
   		<div class="form-group">
         <label for="nombres" class="col-md-4 control-label">Documento</label>
         <div class="col-md-6">
-         <input id="Documento" type="numeric" ng-model="persona.documento" ng-required="true" value='' class="form-control" name="documento" placeholder="#" autofocus  ng-pattern="/[0-9]+/" /> 
+         <input id="Documento" type="numeric" 
+         ng-model="persona.documento" 
+         ng-required="true" 
+         value='' class="form-control" name="documento" placeholder="#" autofocus  ng-pattern="/[0-9]+/" /> 
          	
-          <span class="help-block" ng-show="personaForm.documento.$invalid" topic="¡Error en validación!">
+          <span class="help-block" ng-show="personaForm.documento.$dirty && personaForm.documento.$invalid" topic="¡Error en validación!">
           	<p ng-show="personaForm.documento.$error.required">¡El documento es un valor requerido!</p>
             <p ng-show="personaForm.documento.$error.pattern">¡El documento debe ser valor númerico!</p>
          	</span>
@@ -44,23 +47,30 @@
         <label for="nombres" class="col-md-4 control-label">Email</label>
         <div class="col-md-6">
          <input id="Email" type="text" ng-model="persona.email" ng-required="true" value='' class="form-control" name="email" placeholder="@email"  autofocus ng-pattern='express_email' /> 
-         	<span class="help-block" ng-show="personaForm.email.$invalid" topic="¡Error en validación!">
+         	<span class="help-block" ng-show="personaForm.email.$dirty && personaForm.email.$invalid" topic="¡Error en validación!">
             <p ng-show="personaForm.email.$error.required">¡El email es un valor requerido!</p>
             <p ng-show="personaForm.email.$error.pattern">¡El email no es correcto!</p>
           </span>
         </div>
       </div>
-	 <div class="form-group">
+	    <div class="form-group">
         <label for="nombres" class="col-md-4 control-label">Municipio</label>
         <div class="col-md-6">
-          <select class="form-control" name="municipios_id" ng-model="persona.municipios_id" ng-pattern="/[0-9]+/" >
+          <select class="form-control" name="municipios_id" 
+          ng-model="persona.municipios_id" 
+          ng-pattern="/[0-9]+/"
+          ng-change='mostrar()'>
              <option ng-repeat="municipio in municipios" value="{{municipio.id}}">{{municipio.muni_nombre}}</option>
           </select>
-         	<span class="help-block" ng-show="personaForm.municipios_id.$invalid" topic="¡Error en validación!">
+         	<span class="help-block" ng-show="personaForm.municipios_id.$dirty && personaForm.municipios_id.$invalid" topic="¡Error en validación!">
             <p ng-show="personaForm.municipios_id.$error.required">¡El municipio es un valor requerido!</p>
             <p ng-show="personaForm.municipios_id.$error.pattern">¡El municipio no es correcto!</p>
           </span>
         </div>
+      </div>
+      <div class="form-group" ng-show='persona.municipios_id.length > 0'>
+        <p class="col-md-offset-4">Pais: <span ng-bind='pais_nombre'></span></p>
+        <p class="col-md-offset-4">Departamento: <span ng-bind='depa_nombre'></span></p>
       </div>
       <div class="form-group">
         <div class="col-md-8 col-md-offset-4">

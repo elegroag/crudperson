@@ -198,6 +198,13 @@ var express_email = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"
       $scope.persona.documento = parseInt($scope.persona.documento);
       _app.add_persona($scope.persona);
     };
+
+    $scope.mostrar = function(){
+      _id = $("[name='municipios_id']").val();
+      _app.municipio = _.findWhere(_app.municipios ,{id: parseInt(_id)});
+      $scope.pais_nombre = _app.municipio.pais_nombre; 
+      $scope.depa_nombre = _app.municipio.depa_nombre;
+    };
   })
   .controller('MostrarPersona', function($stateParams, $scope, $state, _app){
     if(_.size(_app.persona) == 0){
@@ -241,9 +248,11 @@ var express_email = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"
             }).then(function successCallback(response)
             {
               _app.email = response.data.model;
-              _app.emails.push(_app.email);            
+              _app.emails.push(_app.email);
+              Notification.success('Registro con éxito');
+                     
             }, function errorCallback(response){
-              console.log(data.responseText);
+              Notification.success('Error <br/>'+ response.data.message);  
             });
         }
       });
